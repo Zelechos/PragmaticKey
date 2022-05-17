@@ -4,6 +4,7 @@
 package views;
 
 import com.sun.awt.AWTUtilities;
+import java.awt.Color;
 import java.awt.Shape;
 import java.awt.Toolkit;
 import java.awt.geom.RoundRectangle2D;
@@ -16,17 +17,18 @@ public class view extends javax.swing.JFrame {
 
     public view() {
         beauty(this);
+        positionWindow(this);
         initComponents();
         borderRadiusWindow(this);
-        positionWindow(this);
     }
     
     /**
-     * subrutina para quitarle el marco por defecto a la ventana
+     * subrutina para mejorar la U/X
      * @param instance 
      */
     public static void beauty(view instance){
         instance.setUndecorated(true);
+        instance.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.85f));
     }
     
     /**
@@ -52,7 +54,7 @@ public class view extends javax.swing.JFrame {
         
         instance.setLocation(positionWidth, positionHeight);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,34 +64,35 @@ public class view extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel1 = new java.awt.Panel();
-        app = new javax.swing.JLabel();
+        container = new java.awt.Panel();
+        caster = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setName("app"); // NOI18N
 
-        panel1.setBackground(new java.awt.Color(0, 5, 28));
-        panel1.setForeground(new java.awt.Color(255, 255, 255));
+        container.setBackground(new java.awt.Color(0, 5, 28));
+        container.setForeground(new java.awt.Color(255, 255, 255));
 
-        app.setFont(new java.awt.Font("Candara Light", 0, 60)); // NOI18N
-        app.setForeground(new java.awt.Color(255, 255, 255));
-        app.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        app.setText("<caster/>");
-        app.setToolTipText("");
+        caster.setFont(new java.awt.Font("Candara Light", 0, 60)); // NOI18N
+        caster.setForeground(new java.awt.Color(255, 255, 255));
+        caster.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        caster.setText("-=>");
+        caster.setToolTipText("");
 
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
+        container.setLayout(containerLayout);
+        containerLayout.setHorizontalGroup(
+            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(containerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(app, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(caster, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(11, Short.MAX_VALUE))
         );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
+        containerLayout.setVerticalGroup(
+            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(containerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(app, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(caster, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -97,11 +100,11 @@ public class view extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -143,11 +146,8 @@ public class view extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel app;
-    private java.awt.Panel panel1;
+    private javax.swing.JLabel caster;
+    private java.awt.Panel container;
     // End of variables declaration//GEN-END:variables
 
-    public void openView() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

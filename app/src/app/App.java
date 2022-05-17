@@ -16,6 +16,6 @@ public class App {
         view window = new view();
         window.setVisible(true);
     }
-    
-    
+
+   
 }
