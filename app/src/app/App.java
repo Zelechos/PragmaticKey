@@ -4,7 +4,7 @@
  */
 package app;
 
-import views.view;
+import views.View;
 
 public class App {
     
@@ -13,7 +13,7 @@ public class App {
     }
     
     public static void openView(){
-        view window = new view();
+        View window = new View();
         window.setVisible(true);
     }
 

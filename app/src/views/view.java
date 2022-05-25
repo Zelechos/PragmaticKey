@@ -3,30 +3,36 @@
  */
 package views;
 
+import app.KeyCaster;
 import com.sun.awt.AWTUtilities;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.geom.RoundRectangle2D;
 
 /**
  *
  * @author Alex Tumiri
  */
-public class view extends javax.swing.JFrame {
+public class View extends javax.swing.JFrame implements KeyListener{
 
-    public view() {
+    private static String text = "";
+    
+    public View() {
         beauty(this);
         positionWindow(this);
         initComponents();
         borderRadiusWindow(this);
+        keyCaster(this);
     }
     
     /**
      * subrutina para mejorar la U/X
      * @param instance 
      */
-    public static void beauty(view instance){
+    public static void beauty(View instance){
         instance.setUndecorated(true);
         instance.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.85f));
     }
@@ -35,7 +41,7 @@ public class view extends javax.swing.JFrame {
      * subrutina para renderizar los bordes de la ventana
      * @param instance 
      */
-    public static void borderRadiusWindow(view instance){
+    public static void borderRadiusWindow(View instance){
         Shape borderRadius = new RoundRectangle2D.Double(0,0,instance.getBounds().width, instance.getBounds().height,25,25); 
         AWTUtilities.setWindowShape(instance, borderRadius);
     }
@@ -44,7 +50,7 @@ public class view extends javax.swing.JFrame {
      * subrutina para posicionar la ventana dinamicamente segun la pantalla
      * @param instance 
      */
-    public static void positionWindow(view instance){
+    public static void positionWindow(View instance){
         int heightScreen = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
         int widthScreen = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
         
@@ -53,6 +59,18 @@ public class view extends javax.swing.JFrame {
         int positionWidth = widthScreen - 230;
         
         instance.setLocation(positionWidth, positionHeight);
+    }
+    
+    public void keyCaster(View instance){
+        instance.addKeyListener(instance);
+    }
+    
+    public void cleanText(){
+        caster.setText("");
+    }
+    
+    public void changeState(String text){
+        caster.setText(text);
     }
     
     /**
@@ -68,7 +86,9 @@ public class view extends javax.swing.JFrame {
         caster = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 5, 28));
         setName("app"); // NOI18N
+        setUndecorated(true);
 
         container.setBackground(new java.awt.Color(0, 5, 28));
         container.setForeground(new java.awt.Color(255, 255, 255));
@@ -76,8 +96,12 @@ public class view extends javax.swing.JFrame {
         caster.setFont(new java.awt.Font("Candara Light", 0, 60)); // NOI18N
         caster.setForeground(new java.awt.Color(255, 255, 255));
         caster.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        caster.setText("-=>");
         caster.setToolTipText("");
+        caster.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                casterKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
         container.setLayout(containerLayout);
@@ -86,7 +110,7 @@ public class view extends javax.swing.JFrame {
             .addGroup(containerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(caster, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         containerLayout.setVerticalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,6 +134,9 @@ public class view extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void casterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_casterKeyPressed
+    }//GEN-LAST:event_casterKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -127,20 +154,20 @@ public class view extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new view().setVisible(true);
+                new View().setVisible(true);
             }
         });
     }
@@ -150,4 +177,20 @@ public class view extends javax.swing.JFrame {
     private java.awt.Panel container;
     // End of variables declaration//GEN-END:variables
 
+    @Override
+    public void keyTyped(KeyEvent event) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent event) {
+        text += event.getKeyChar();
+        String response = KeyCaster.cuttingText(text);
+        cleanText();
+        changeState(response);
+    }
+
+    @Override
+    public void keyReleased(KeyEvent event) {
+    }
+    
 }
