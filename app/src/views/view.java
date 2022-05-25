@@ -82,24 +82,87 @@ public class View extends javax.swing.JFrame implements KeyListener{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         container = new java.awt.Panel();
+        jLabel1 = new javax.swing.JLabel();
         caster = new javax.swing.JLabel();
+        closeButton = new javax.swing.JLabel();
+        github = new javax.swing.JLabel();
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/line.gif"))); // NOI18N
+        jLabel3.setToolTipText("");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 5, 28));
         setName("app"); // NOI18N
         setUndecorated(true);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
 
         container.setBackground(new java.awt.Color(0, 5, 28));
+        container.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         container.setForeground(new java.awt.Color(255, 255, 255));
+        container.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                containerMousePressed(evt);
+            }
+        });
+        container.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                containerMouseDragged(evt);
+            }
+        });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/line.gif"))); // NOI18N
+        jLabel1.setToolTipText("");
+
+        caster.setBackground(new java.awt.Color(255, 0, 102));
         caster.setFont(new java.awt.Font("Candara Light", 0, 60)); // NOI18N
         caster.setForeground(new java.awt.Color(255, 255, 255));
         caster.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         caster.setToolTipText("");
+        caster.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        caster.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                casterMouseDragged(evt);
+            }
+        });
+        caster.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                casterMousePressed(evt);
+            }
+        });
         caster.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 casterKeyPressed(evt);
+            }
+        });
+
+        closeButton.setForeground(new java.awt.Color(204, 204, 204));
+        closeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cerrar.png"))); // NOI18N
+        closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                closeButtonMouseClicked(evt);
+            }
+        });
+
+        github.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/link.png"))); // NOI18N
+        github.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                githubMouseDragged(evt);
+            }
+        });
+        github.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                githubMousePressed(evt);
             }
         });
 
@@ -109,26 +172,42 @@ public class View extends javax.swing.JFrame implements KeyListener{
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(containerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(caster, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(containerLayout.createSequentialGroup()
+                        .addComponent(caster, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
+                                .addComponent(github)
+                                .addGap(44, 44, 44)
+                                .addComponent(closeButton)))))
+                .addContainerGap())
         );
         containerLayout.setVerticalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(containerLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(caster, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(closeButton)
+                    .addComponent(github))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(container, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -136,6 +215,46 @@ public class View extends javax.swing.JFrame implements KeyListener{
 
     private void casterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_casterKeyPressed
     }//GEN-LAST:event_casterKeyPressed
+
+    private void closeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_closeButtonMouseClicked
+
+    int c_X, c_Y;
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+    }//GEN-LAST:event_formMousePressed
+
+    private void containerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_containerMousePressed
+        c_X = evt.getX();
+        c_Y = evt.getY();
+    }//GEN-LAST:event_containerMousePressed
+
+    private void githubMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_githubMousePressed
+    }//GEN-LAST:event_githubMousePressed
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+        
+    }//GEN-LAST:event_formMouseDragged
+
+    private void githubMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_githubMouseDragged
+    }//GEN-LAST:event_githubMouseDragged
+
+    private void containerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_containerMouseDragged
+        int coordinate_X = evt.getXOnScreen();
+        int coordinate_Y = evt.getYOnScreen();
+        this.setLocation(coordinate_X-c_X, coordinate_Y-c_Y);
+    }//GEN-LAST:event_containerMouseDragged
+
+    private void casterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casterMousePressed
+        c_X = evt.getX();
+        c_Y = evt.getY();
+    }//GEN-LAST:event_casterMousePressed
+
+    private void casterMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_casterMouseDragged
+        int coordinate_X = evt.getXOnScreen();
+        int coordinate_Y = evt.getYOnScreen();
+        this.setLocation(coordinate_X-c_X, coordinate_Y-c_Y);
+    }//GEN-LAST:event_casterMouseDragged
 
     /**
      * @param args the command line arguments
@@ -174,7 +293,11 @@ public class View extends javax.swing.JFrame implements KeyListener{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel caster;
+    private javax.swing.JLabel closeButton;
     private java.awt.Panel container;
+    private javax.swing.JLabel github;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 
     @Override

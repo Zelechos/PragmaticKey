@@ -8,7 +8,7 @@ public final class KeyCaster{
 
     public static String cuttingText(String text){
         String response;
-        int numberOfLetters = 6;
+        int numberOfLetters = 5;
         if(text.length() > numberOfLetters){
             response = "";
             for (int i = (text.length()-numberOfLetters); i < text.length(); i++) {
