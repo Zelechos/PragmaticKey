@@ -14,7 +14,7 @@ import java.awt.geom.RoundRectangle2D;
 
 /**
  *
- * @author Alex Tumiri
+ * @author Alex Tumiria 
  */
 public class View extends javax.swing.JFrame implements KeyListener{
 
@@ -32,6 +32,7 @@ public class View extends javax.swing.JFrame implements KeyListener{
      * subrutina para mejorar la U/X
      * @param instance 
      */
+    
     public static void beauty(View instance){
         instance.setUndecorated(true);
         instance.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.85f));
@@ -53,10 +54,10 @@ public class View extends javax.swing.JFrame implements KeyListener{
     public static void positionWindow(View instance){
         int heightScreen = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
         int widthScreen = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-        
-        // [width => 210,  height => 111] size of JFrame
-        int positionHeight = heightScreen - 141;
-        int positionWidth = widthScreen - 230;
+
+        // [width => 244,  height => 127] size of JFrame
+        int positionHeight = heightScreen - 157;
+        int positionWidth = widthScreen - 264;
         
         instance.setLocation(positionWidth, positionHeight);
     }
@@ -124,7 +125,7 @@ public class View extends javax.swing.JFrame implements KeyListener{
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/line.gif"))); // NOI18N
         jLabel1.setToolTipText("");
 
-        caster.setBackground(new java.awt.Color(255, 0, 102));
+        caster.setBackground(new java.awt.Color(255, 255, 255));
         caster.setFont(new java.awt.Font("Candara Light", 0, 60)); // NOI18N
         caster.setForeground(new java.awt.Color(255, 255, 255));
         caster.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -170,21 +171,19 @@ public class View extends javax.swing.JFrame implements KeyListener{
         container.setLayout(containerLayout);
         containerLayout.setHorizontalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(containerLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(containerLayout.createSequentialGroup()
-                        .addComponent(caster, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
-                                .addComponent(github)
-                                .addGap(44, 44, 44)
-                                .addComponent(closeButton)))))
+                        .addComponent(github)
+                        .addGap(67, 67, 67)
+                        .addComponent(closeButton))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(caster, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         containerLayout.setVerticalGroup(
             containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +194,7 @@ public class View extends javax.swing.JFrame implements KeyListener{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(closeButton)
-                    .addComponent(github))
+                    .addComponent(github, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -203,7 +202,7 @@ public class View extends javax.swing.JFrame implements KeyListener{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(container, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,19 +300,17 @@ public class View extends javax.swing.JFrame implements KeyListener{
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void keyTyped(KeyEvent event) {
-    }
+    public void keyTyped(KeyEvent event) {}
 
     @Override
     public void keyPressed(KeyEvent event) {
-        text += event.getKeyChar();
+        text += KeyCaster.keySymbol(event);
         String response = KeyCaster.cuttingText(text);
         cleanText();
         changeState(response);
     }
 
     @Override
-    public void keyReleased(KeyEvent event) {
-    }
+    public void keyReleased(KeyEvent event) {}
     
 }
