@@ -4,12 +4,12 @@
  */
 package app;
 
-import java.awt.event.KeyEvent;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import org.jnativehook.keyboard.NativeKeyEvent;
 
 public final class KeyCaster{
-    
+    /**
+     * variable estatica para generar el texto obtenido por teclado
+     */
     private static String show_text = "";
 
     /**
@@ -37,119 +37,190 @@ public final class KeyCaster{
      * @param event
      * @return el texto con los simbolos configurados
      */
-    public static String keySymbol(KeyEvent event){
-        System.out.println(event.getKeyCode());
+    public static String keySymbol(NativeKeyEvent event){
+//          System.out.println(event.getKeyCode());
         switch(event.getKeyCode()){
-            case 8:
+            case 14:
                 show_text += "[<=]";
                 break;
-            case 10:
+            case 15:
+                show_text += "[tab]";
+                break;
+            case 28:
                 show_text += "[«-I]";
                 break;
-            case 12:
-                show_text += "[npgn]";
-                break;
-            case 16:
-                show_text += "[î]";
-                break;
-            case 17:
-                show_text += "[ctrl]";
-                break;
-            case 18:
-                show_text += "[alt]";
-                break;
-            case 19:
-                show_text += "[pau]";
-                break;
-            case 20:
+            case 58:
                 show_text += "[caps]";
                 break;
+            case 12:
+                show_text += "-";
+                break;
+            case 13:
+                show_text += "=";
+                break;
+            case 26:
+                show_text += getLastSymbol(show_text, "[");
+                break;
             case 27:
+                show_text += getLastSymbol(show_text, "]");
+                break;
+            case 39:
+                show_text += ";";
+                break;
+            case 40:
+                show_text += getLastSymbol(show_text, "'");
+                break;
+            case 42:
+                show_text += "[î]";
+                break;
+            case 3638:
+                show_text += "[î]";
+                break;
+            case 3639:
+                show_text += "[shot]";
+                break;
+            case 29:
+                show_text += "[ctrl]";
+                break;
+            case 1: 
                 show_text += "[esc]";
                 break;
-            case 32:
+            case 56:
+                show_text += "[alt]";
+                break;
+            case 57:
                 show_text += "[-]";
                 break;
-            case 33:
+            case 3657:
                 show_text += "[up]";
                 break;
-            case 34:
+            case 3665:
                 show_text += "[down]";
                 break;                                                               
-            case 35:
+            case 3663:
                 show_text += "[end]";
                 break;    
-            case 36:
+            case 3655:
                 show_text += "[home]";
                 break;
-            case 37:
+            case 57419:
                 show_text += "[<]";
                 break;
-            case 38:
-                show_text += "[^]";
+            case 57416:
+              show_text += "[^]";
                 break;                                                               
-            case 39:
+            case 57421:
                 show_text += "[>]";
                 break;    
-            case 40:
+            case 57424:
                 show_text += "[v]";
                 break;
-            case 127:
+            case 3667:
                 show_text += "[del]";
                 break;
-            case 112:
+            case 59:
                 show_text += "[F1]";
                 break;
-            case 113:
+            case 60:
                 show_text += "[F2]";
                 break;
-            case 114:
+            case 61:
                 show_text += "[F3]";
                 break;
-            case 115:
+            case 62:
                 show_text += "[F4]";
                 break;                
-            case 116:
+            case 43:
+                show_text += getLastSymbol(show_text, "\\");
+                break;
+            case 63:
                 show_text += "[F5]";
                 break;
-            case 117:
+            case 64:
                 show_text += "[F6]";
                 break;
-            case 118:
+            case 65:
                 show_text += "[F7]";
                 break;
-            case 119:
+            case 66:
                 show_text += "[F8]";
                 break;                                
-            case 120:
+            case 67:
                 show_text += "[F9]";
                 break;
-            case 121:
+            case 68:
                 show_text += "[F10]";
                 break;
-            case 122:
+            case 87:
                 show_text += "[F11]";
                 break;
-            case 123:
+            case 88:
                 show_text += "[F12]";
                 break;
-            case 144:
+            case 69:
                 show_text += "[bnum]";
                 break;
-            case 145:
+            case 70:
                 show_text += "[bloq]";
                 break;
-            case 155:
+            case 3666:
                 show_text += "[ins]";
                 break;
-            case 524:
+            case 3675:
                 show_text += "[win]";
                 break;
+            case 41:
+                show_text += "`";
+                break;
             default:
-                show_text += event.getKeyChar();
+
+                
+                show_text += NativeKeyEvent.getKeyText(event.getKeyCode()).toLowerCase();
+//                show_text += event.getKeyCode();
+                resetShowText();
         }
         return show_text;
     }
     
+    /**
+     * Subrutina para obtener el shift symbol y obtener el simbolos alternos
+     * @param text
+     * @param symbol
+     * @return simbolo alterno
+     */
+    public static String getLastSymbol(String text, String symbol){
+        if(text.length() >= 2){
+            String response = String.valueOf(text.charAt(text.length() - 2));
+            if(response.equals("î")){
+                
+                switch(symbol){
+                    case "[":
+                        return "{";
+                    case "]":
+                        return "}";
+                    case "'":
+                        return String.valueOf('"');
+                    case "\\":
+                        return String.valueOf('|');
+                }
+                
+            }
+        }
+        return symbol;
+    }
+    
+    /**
+     * Subrutina para resetear el show_text y optimar la app
+     */
+    public static void resetShowText(){
+        String response ="";
+        int numberOfLetters = 10;
+        if(show_text.length() > numberOfLetters){
+            for (int i = (show_text.length()-numberOfLetters); i < show_text.length(); i++) {
+                response += String.valueOf(show_text.charAt(i));
+            }
+            show_text = response;
+        }
+    }
     
 }

@@ -8,15 +8,19 @@ import com.sun.awt.AWTUtilities;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.awt.geom.RoundRectangle2D;
+import org.jnativehook.GlobalScreen;
+import org.jnativehook.NativeHookException;
+import org.jnativehook.keyboard.NativeKeyEvent;
+import org.jnativehook.keyboard.NativeKeyListener;
 
 /**
  *
- * @author Alex Tumiria 
+ * @author Alex Tumiri
  */
-public class View extends javax.swing.JFrame implements KeyListener{
+public class View extends javax.swing.JFrame implements NativeKeyListener, WindowListener{
 
     private static String text = "";
     
@@ -26,6 +30,9 @@ public class View extends javax.swing.JFrame implements KeyListener{
         initComponents();
         borderRadiusWindow(this);
         keyCaster(this);
+        register_Window();
+        addWindowListener(this);
+        this.setAlwaysOnTop(true);
     }
     
     /**
@@ -62,16 +69,38 @@ public class View extends javax.swing.JFrame implements KeyListener{
         instance.setLocation(positionWidth, positionHeight);
     }
     
+    /**
+     * subrutina para crear un oyente de teclado global
+     * @param instance 
+     */
     public void keyCaster(View instance){
-        instance.addKeyListener(instance);
+        GlobalScreen.addNativeKeyListener(this);
     }
     
+    /**
+     * subrutina para limpiar el caster(JLabel)
+     */
     public void cleanText(){
         caster.setText("");
     }
     
+    /**
+     * subrutina para cambio el estado del texto del caster(JLabel)
+     * @param text 
+     */
     public void changeState(String text){
         caster.setText(text);
+    }
+
+    /**
+     * subrutina para obtener la ventana global para ejecutar el keyCaster
+     */
+    public void register_Window() {
+        try {
+            GlobalScreen.registerNativeHook();
+        } catch (NativeHookException ex) {
+            System.out.println("Code Crash =>"+ ex);
+        }
     }
     
     /**
@@ -83,15 +112,11 @@ public class View extends javax.swing.JFrame implements KeyListener{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
         container = new java.awt.Panel();
-        jLabel1 = new javax.swing.JLabel();
+        separtor = new javax.swing.JLabel();
         caster = new javax.swing.JLabel();
         closeButton = new javax.swing.JLabel();
         github = new javax.swing.JLabel();
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/line.gif"))); // NOI18N
-        jLabel3.setToolTipText("");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 5, 28));
@@ -122,8 +147,8 @@ public class View extends javax.swing.JFrame implements KeyListener{
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/line.gif"))); // NOI18N
-        jLabel1.setToolTipText("");
+        separtor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/line.gif"))); // NOI18N
+        separtor.setToolTipText("");
 
         caster.setBackground(new java.awt.Color(255, 255, 255));
         caster.setFont(new java.awt.Font("Candara Light", 0, 60)); // NOI18N
@@ -134,6 +159,14 @@ public class View extends javax.swing.JFrame implements KeyListener{
         caster.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 casterMouseDragged(evt);
+            }
+        });
+        caster.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                casterFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                casterFocusLost(evt);
             }
         });
         caster.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -178,7 +211,7 @@ public class View extends javax.swing.JFrame implements KeyListener{
                         .addComponent(github)
                         .addGap(67, 67, 67)
                         .addComponent(closeButton))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(separtor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, containerLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -190,7 +223,7 @@ public class View extends javax.swing.JFrame implements KeyListener{
             .addGroup(containerLayout.createSequentialGroup()
                 .addComponent(caster, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(separtor, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(closeButton)
@@ -255,6 +288,12 @@ public class View extends javax.swing.JFrame implements KeyListener{
         this.setLocation(coordinate_X-c_X, coordinate_Y-c_Y);
     }//GEN-LAST:event_casterMouseDragged
 
+    private void casterFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_casterFocusGained
+    }//GEN-LAST:event_casterFocusGained
+
+    private void casterFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_casterFocusLost
+    }//GEN-LAST:event_casterFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -289,28 +328,47 @@ public class View extends javax.swing.JFrame implements KeyListener{
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel caster;
     private javax.swing.JLabel closeButton;
     private java.awt.Panel container;
     private javax.swing.JLabel github;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel separtor;
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void keyTyped(KeyEvent event) {}
-
-    @Override
-    public void keyPressed(KeyEvent event) {
-        text += KeyCaster.keySymbol(event);
+    public void nativeKeyPressed(NativeKeyEvent nke) {
+        text += KeyCaster.keySymbol(nke);
         String response = KeyCaster.cuttingText(text);
         cleanText();
         changeState(response);
     }
+    
+    @Override
+    public void nativeKeyTyped(NativeKeyEvent nke) {}
 
     @Override
-    public void keyReleased(KeyEvent event) {}
+    public void nativeKeyReleased(NativeKeyEvent nke) {}
+
+    @Override
+    public void windowOpened(WindowEvent e) {}
+
+    @Override
+    public void windowClosing(WindowEvent e) {}
+
+    @Override
+    public void windowClosed(WindowEvent e) {}
+
+    @Override
+    public void windowIconified(WindowEvent e) {}
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {}
+
+    @Override
+    public void windowActivated(WindowEvent e) {}
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {}
     
 }
