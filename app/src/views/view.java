@@ -34,7 +34,7 @@ public class View extends javax.swing.JFrame implements NativeKeyListener, Windo
         addWindowListener(this);
         this.setAlwaysOnTop(true);
     }
-    
+
     /**
      * subrutina para mejorar la U/X
      * @param instance 

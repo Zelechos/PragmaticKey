@@ -53,10 +53,10 @@ public final class KeyCaster{
                 show_text += "[caps]";
                 break;
             case 12:
-                show_text += "-";
+                show_text += getLastSymbol(show_text, "-");
                 break;
             case 13:
-                show_text += "=";
+                show_text += getLastSymbol(show_text, "=");
                 break;
             case 26:
                 show_text += getLastSymbol(show_text, "[");
@@ -65,7 +65,7 @@ public final class KeyCaster{
                 show_text += getLastSymbol(show_text, "]");
                 break;
             case 39:
-                show_text += ";";
+                show_text += getLastSymbol(show_text, ";");
                 break;
             case 40:
                 show_text += getLastSymbol(show_text, "'");
@@ -170,8 +170,47 @@ public final class KeyCaster{
                 show_text += "[win]";
                 break;
             case 41:
-                show_text += "`";
+                show_text += getLastSymbol(show_text, "`");
                 break;
+            case 51:
+                show_text += getLastSymbol(show_text, ",");
+                break;
+            case 52:
+                show_text += getLastSymbol(show_text, ".");
+                break;
+            case 53:
+                show_text += getLastSymbol(show_text, "/");
+                break;
+            case 2:
+                show_text += getLastSymbol(show_text, "1");
+                break;
+            case 3:
+                show_text += getLastSymbol(show_text, "2");
+                break;
+            case 4:
+                show_text += getLastSymbol(show_text, "3");
+                break;
+            case 5:
+                show_text += getLastSymbol(show_text, "4");
+                break;
+            case 6:
+                show_text += getLastSymbol(show_text, "5");
+                break;                
+            case 7:
+                show_text += getLastSymbol(show_text, "6");
+                break;
+            case 8:
+                show_text += getLastSymbol(show_text, "7");
+                break;
+            case 9:
+                show_text += getLastSymbol(show_text, "8");
+                break;
+            case 10:
+                show_text += getLastSymbol(show_text, "9");
+                break;                
+            case 11:
+                show_text += getLastSymbol(show_text, "0");
+                break;                
             default:
 
                 
@@ -202,6 +241,40 @@ public final class KeyCaster{
                         return String.valueOf('"');
                     case "\\":
                         return String.valueOf('|');
+                    case ";":
+                        return ":";
+                    case "-":
+                        return "_";
+                    case "=":
+                        return "+";
+                    case "`":
+                        return "~";
+                    case ",":
+                        return "<";
+                    case ".":
+                        return ">";
+                    case "/":
+                        return "?";
+                    case "1":
+                        return "!";
+                    case "2":
+                        return "@";
+                    case "3":
+                        return "#";
+                    case "4":
+                        return "$";
+                    case "5":
+                        return "%";
+                    case "6":
+                        return "^";
+                    case "7":
+                        return "&";
+                    case "8":
+                        return "*";
+                    case "9":
+                        return "(";
+                    case "0":
+                        return ")";
                 }
                 
             }
