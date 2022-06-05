@@ -1,0 +1,32 @@
+
+
+Version:	3.14
+CmdLine:	F:\Proyectos\PragmaticKey\PragmaticKey.exe --l4j-debug
+WOW64:		yes
+Working dir:	F:\Proyectos\PragmaticKey\.
+Java min ver:	1.008.000
+Java max ver:	
+64-bit search:	SOFTWARE\JavaSoft\Java Runtime Environment...
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8
+Check launcher:	C:\Program Files\Java\jre1.8.0_311\bin\javaw.exe (OK)
+Match:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_271
+Check launcher:	C:\Program Files\Java\jre1.8.0_271\bin\javaw.exe (OK)
+Match:		1.008.000_271
+Check:		SOFTWARE\JavaSoft\Java Runtime Environment\1.8.0_311
+Check launcher:	C:\Program Files\Java\jre1.8.0_311\bin\javaw.exe (OK)
+Match:		1.008.000_311
+64-bit search:	SOFTWARE\JavaSoft\Java Development Kit...
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8
+Ignore:		1.008.000
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_251
+Ignore:		1.008.000_251
+Check:		SOFTWARE\JavaSoft\Java Development Kit\1.8.0_311
+Ignore:		1.008.000_311
+64-bit search:	SOFTWARE\JavaSoft\JRE...
+64-bit search:	SOFTWARE\JavaSoft\JDK...
+Runtime used:	1.008.000_311 (64-bit)
+Launcher:	C:\Program Files\Java\jre1.8.0_311\bin\javaw.exe
+Launcher args:	-jar "F:\Proyectos\PragmaticKey\PragmaticKey.exe"
+Args length:	49/32768 chars
+Exit code:	0
