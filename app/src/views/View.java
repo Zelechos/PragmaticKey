@@ -4,7 +4,6 @@
 package views;
 
 import app.KeyCaster;
-//import com.sun.awt.AWTUtilities;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Shape;
@@ -57,7 +56,7 @@ public class View extends javax.swing.JFrame implements NativeKeyListener, Windo
      */
     public static void borderRadiusWindow(View instance){
         Shape borderRadius = new RoundRectangle2D.Double(0,0,instance.getBounds().width, instance.getBounds().height,25,25);
-//        AWTUtilities.setWindowShape(instance, borderRadius);
+        instance.setShape(borderRadius);
     }
 
     /**
